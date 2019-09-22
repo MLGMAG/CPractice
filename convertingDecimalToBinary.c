@@ -1,21 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Function convert decimal numbers into binary;
+/* Functions convert decimal numbers into binary;
  *
  * I realized that functionality via division method;
  */
 
-char *decimalToBinary(int decimal);
+char *decimalToBinary32(int decimal);
+
+char *decimalToBinary8(int decimal);
 
 int main() {
     printf("Enter a decimal number:");
     int number;
     scanf("%d", &number);
     printf("number = %d\n", number);
-    
-    char *p = decimalToBinary(number);
-    printf("%s", p);
+
+    char *p;
+    p = decimalToBinary32(number);
+    printf("4 byte: %s\n", p);
+    p = decimalToBinary8(number);
+    printf("1 byte: %s\n", p);
+
     return 0;
 }
 
@@ -23,7 +29,7 @@ int main() {
  * Return: char* (array of char) (String);
  * Output example: (00...00 00...00 00...0 00...00);
  */
-char *decimalToBinary(int decimal) {
+char *decimalToBinary32(int decimal) {
 
     // arrayLen: size of int(32) + 3 ident;
     int arrayLen = 35;
@@ -63,5 +69,24 @@ char *decimalToBinary(int decimal) {
         }
     }
 
+    return binaryRepresentation;
+}
+
+/* Get: int;
+ * Return: char* (array of char) (String);
+ * Output: only first byte ((-255) - 255);
+ */
+char *decimalToBinary8(int decimal) {
+    int arrayLen = 7;
+    static char binaryRepresentation[7];
+
+    for (int i = arrayLen; i >= 0; --i) {
+        if ((decimal >= 1) | (decimal <= -1)) {
+            binaryRepresentation[i] = abs(decimal % 2) + '0';
+            decimal /= 2;
+        } else {
+            binaryRepresentation[i] = '0';
+        }
+    }
     return binaryRepresentation;
 }
