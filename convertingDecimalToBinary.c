@@ -16,6 +16,7 @@ int main() {
     
     char *p = decimalToBinary(number);
     printf("%s", p);
+    return 0;
 }
 
 /* Get: int;
