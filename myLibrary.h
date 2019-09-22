@@ -8,13 +8,13 @@ char *decimalToBinary(int decimal) {
         sing = '1';
     }
     for (int i = arrayLen - 1; i >= 0; --i) {
-        if (i == 26 | i == 17 | i == 8) {
+        if (i == 26 || i == 17 || i == 8) {
             binaryRepresentation[i] = ' ';
             --i;
         }
         if (i == 0) {
             binaryRepresentation[0] = sing;
-        } else if ((decimal >= 1) | (decimal <= -1)) {
+        } else if ((decimal >= 1) || (decimal <= -1)) {
             binaryRepresentation[i] = abs(decimal % 2) + '0';
             decimal /= 2;
         } else {
@@ -29,7 +29,7 @@ char *decimalToBinary8(int decimal) {
     static char binaryRepresentation[7];
 
     for (int i = arrayLen; i >= 0; --i) {
-        if ((decimal >= 1) | (decimal <= -1)) {
+        if ((decimal >= 1) || (decimal <= -1)) {
             binaryRepresentation[i] = abs(decimal % 2) + '0';
             decimal /= 2;
         } else {

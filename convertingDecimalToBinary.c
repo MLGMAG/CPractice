@@ -53,7 +53,7 @@ char *decimalToBinary32(int decimal) {
          * 17 = 26-18-1(ident);
          * 8 = 17-8-1(ident);
          */
-        if (i == 26 | i == 17 | i == 8) {
+        if (i == 26 || i == 17 || i == 8) {
             binaryRepresentation[i] = ' ';
             --i;
         }
@@ -61,7 +61,7 @@ char *decimalToBinary32(int decimal) {
 
         if (i == 0) {                                                       // If it's last array element = apply sing;
             binaryRepresentation[0] = sing;
-        } else if ((decimal >= 1) | (decimal <= -1)) {                      // Check for positive and negative values
+        } else if ((decimal >= 1) || (decimal <= -1)) {                      // Check for positive and negative values
             binaryRepresentation[i] = abs(decimal % 2) + '0';               // Transforming int to char: 1 -> '1'
             decimal /= 2;                                                   // Dividing main value for next step
         } else {
@@ -81,7 +81,7 @@ char *decimalToBinary8(int decimal) {
     static char binaryRepresentation[7];
 
     for (int i = arrayLen; i >= 0; --i) {
-        if ((decimal >= 1) | (decimal <= -1)) {
+        if ((decimal >= 1) || (decimal <= -1)) {
             binaryRepresentation[i] = abs(decimal % 2) + '0';
             decimal /= 2;
         } else {
