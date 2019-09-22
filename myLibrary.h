@@ -23,3 +23,18 @@ char *decimalToBinary(int decimal) {
     }
     return binaryRepresentation;
 }
+
+char *decimalToBinary8(int decimal) {
+    int arrayLen = 7;
+    static char binaryRepresentation[7];
+
+    for (int i = arrayLen; i >= 0; --i) {
+        if ((decimal >= 1) | (decimal <= -1)) {
+            binaryRepresentation[i] = abs(decimal % 2) + '0';
+            decimal /= 2;
+        } else {
+            binaryRepresentation[i] = '0';
+        }
+    }
+    return binaryRepresentation;
+}
