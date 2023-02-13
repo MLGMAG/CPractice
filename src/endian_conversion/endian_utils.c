@@ -1,44 +1,9 @@
+#include "endian_utils.h"
 #include <stdio.h>
-#include <stdint.h>
-#include <byteswap.h>
 
-// main -> uint64_to_byte_array -> uint64_to_binary_string
-// main -> print_byte_array
-// main -> to_big_endian -> reverse_bytes
-// main -> to_little_endian -> reverse_bytes
-
-void uint64_to_byte_array(uint64_t value, char byteArray[8][9]);
-void uint64_to_binary_string(uint64_t value, char binaryString[]);
-void print_byte_array(char byteArray[8][9]);
-uint64_t reverse_bytes(uint64_t value);
-uint64_t to_big_endian(uint64_t littleEndian);
-uint64_t to_little_endian(uint64_t bigEndian);
-
-int main() {
-   char byteArray[8][9];
-
-   uint64_t number64 = 18408238150008779639UL;
-
-   printf("Initial: %lu\n", number64);
-   uint64_to_byte_array(number64, byteArray);
-   print_byte_array(byteArray);
-   printf("\n");
-
-   uint64_t bigEndian = to_big_endian(number64);
-
-   printf("Big endian: %lu\n", bigEndian);
-   uint64_to_byte_array(bigEndian, byteArray);
-   print_byte_array(byteArray);
-   printf("\n");
-
-   uint64_t littleEndian = to_little_endian(bigEndian);
-
-   printf("Little endian: %lu\n", littleEndian);
-   uint64_to_byte_array(littleEndian, byteArray);
-   print_byte_array(byteArray);
-
-   return 0;
-}
+// uint64_to_byte_array -> int64_to_binary_string
+// to_big_endian -> reverse_bytes
+// to_little_endian -> reverse_bytes
 
 void uint64_to_binary_string(uint64_t value, char binaryString[]) {
 
@@ -49,7 +14,7 @@ void uint64_to_binary_string(uint64_t value, char binaryString[]) {
       char binaryPart = (value & powerOfTwo) == 0 ? '0' : '1';
       binaryString[i] = binaryPart;
 
-      powerOfTwo /= 2UL;
+      powerOfTwo /= 2ULL;
    }
 
    binaryString[64] = '\0';
