@@ -14,7 +14,7 @@ void uint64_to_binary_string(uint64_t value, char binaryString[]) {
       char binaryPart = (value & powerOfTwo) == 0 ? '0' : '1';
       binaryString[i] = binaryPart;
 
-      powerOfTwo /= 2ULL;
+      powerOfTwo /= 2UL;
    }
 
    binaryString[64] = '\0';
@@ -63,17 +63,13 @@ uint64_t reverse_bytes(uint64_t value) {
            if (lhsValue == 1) {
              value = value | rhsShift;
            } else {
-             value = ~value;
-             value = value | rhsShift;
-             value = ~value;
+             value = value & (~rhsShift);
            }
 
            if (rhsValue == 1) {
              value = value | lhsShift;
            } else {
-             value = ~value;
-             value = value | lhsShift;
-             value = ~value;
+             value = value & (~lhsShift);
            }
          }
       }
